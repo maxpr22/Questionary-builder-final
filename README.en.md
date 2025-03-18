@@ -43,5 +43,5 @@ This web application allows you to create, edit, run, and analyse tests. There a
   - JavaScript
 
 1. Deploy and repository.
-  - 🔗 Access to the application: [URL to hosting]
-  - 📂 Repository on GitHub [Link to the repository].
+  - 🔗 Access to the application: [[URL to hosting](https://questionary-builder-final.vercel.app/)]
+  - 📂 Repository on GitHub [[Link to the repository](https://github.com/maxpr22/Questionary-builder-final)].
