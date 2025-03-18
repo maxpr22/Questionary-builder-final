@@ -95,7 +95,7 @@ function createCatalogMarkup(tests) {
                     <div class="dropdown-menu">
                         <button class="edit"><a class = "start-link" href="/questionary-builder.html">Редагувати</a></button>
                         <button class="delete"onClick="deleteTest(${id})">Видалити</button>
-                        <button class="continue"><a class = "start-link" href="/walkthrough?test_id=${id}">Продовжити</a></button>
+                        <button class="continue"><a class = "start-link" href="/walkthrough.html?test_id=${id}">Продовжити</a></button>
                     </div>
                 </div>
             </div>
@@ -104,7 +104,7 @@ function createCatalogMarkup(tests) {
             <p>${timeSince(created_at)}</p>
             </div>
             <div class="test-actions">
-                <a class="start" href="/walkthrough?test_id=${id}">Запустити</a>
+                <a class="start" href="/walkthrough.html?test_id=${id}">Запустити</a>
             </div>
         </li>`
     )

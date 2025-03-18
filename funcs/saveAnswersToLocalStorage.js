@@ -87,14 +87,8 @@ document.addEventListener('DOMContentLoaded', function () {
           });
         }
       });
-
-      if (typeof checkIfAllAnswered === 'function') {
-        checkIfAllAnswered();
-      } else {
-        console.error('Функция checkForAllAnswers не найдена');
-      }
     }
-
+    
     questionCards.forEach(card => {
       const answersContainer = card.querySelector('.answers');
       if (!answersContainer) return;
