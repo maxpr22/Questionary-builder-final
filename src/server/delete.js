@@ -31,6 +31,7 @@ export const deleteTest = async testId => {
     }
     await supabase.from('tests').delete().eq('id', testId);
     Notiflix.Notify.success('Тест был успешно удалён');
+    window.location.reload()
   } catch (error) {
     Notiflix.Notify.failure(`Ошибка при удалении теста: ${error.message}`);
   }
