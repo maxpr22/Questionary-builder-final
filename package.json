@@ -1,0 +1,51 @@
+{
+  "name": "parcel-project-template",
+  "version": "2.0.0",
+  "description": "",
+  "homepage": "https://maxpr22.github.io/Questionary-builder-final",
+  "scripts": {
+    "start": "parcel src/*.html ",
+    "build": "parcel build src/*.html --public-url /Questionary-builder-final/",
+    "server": "json-server --watch db.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maxpr22/Questionary-builder-final.git"
+  },
+  "keywords": [],
+  "author": "Maxim Protsiuk <protsuk26@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maxpr22/Questionary-builder-final/issues"
+  },
+  "dependencies": {
+    "@parcel/core": "^2.13.3",
+    "@supabase/postgrest-js": "^1.19.3",
+    "@supabase/supabase-js": "^1.0.0",
+    "chart.js": "^4.4.8",
+    "dayjs": "^1.11.13",
+    "dotenv": "^16.4.7",
+    "fslightbox": "^3.5.1",
+    "jquery": "^3.7.1",
+    "modern-normalize": "^1.1.0",
+    "notiflix": "^3.2.8",
+    "relative-time": "^1.0.0"
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.6.0",
+    "buffer": "^6.0.3",
+    "crypto-browserify": "^3.12.1",
+    "events": "^3.3.0",
+    "json-server": "^1.0.0-beta.3",
+    "os-browserify": "^0.3.0",
+    "parcel": "^2.13.3",
+    "parcel-reporter-clean-dist": "^1.0.4",
+    "path-browserify": "^1.0.1",
+    "posthtml-include": "^1.7.4",
+    "process": "^0.11.10",
+    "stream-browserify": "^3.0.0",
+    "string_decoder": "^1.3.0",
+    "vm-browserify": "^1.1.2"
+  },
+  "browserslist": "> 0.5%, last 2 versions, not dead"
+}

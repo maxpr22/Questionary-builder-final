@@ -1,0 +1,224 @@
+.container {
+  width: 80%;
+  max-width: 1200px;
+  margin: 20px auto;
+}
+
+h1 {
+  text-align: center;
+  font-size: 24px;
+}
+
+.test-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 0;
+  list-style: none;
+}
+
+.test-card {
+  background: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.test-card:hover {
+  transform: scale(1.02);
+}
+
+.test-card p {
+  overflow: hidden;
+  display: -webkit-box;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+/* Заголовок тесту + меню */
+.test-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.test-header h2 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.menu-button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.menu-container {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 30px;
+  right: 0;
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  overflow: hidden;
+  display: none;
+  flex-direction: column;
+}
+
+.dropdown-menu button {
+  background: none;
+  border: none;
+  padding: 10px;
+  width: 120px;
+  text-align: left;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s ease-in-out;
+}
+
+.dropdown-menu button:hover {
+  background: #f0f0f0;
+}
+
+.menu-container.active .dropdown-menu {
+  display: flex;
+}
+
+.test-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.test-actions button {
+  flex: 1;
+  padding: 8px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+.start {
+  border-radius: 0.5rem;
+  text-decoration: none;
+  width: 100%;
+  text-align: center;
+  padding: 0.5rem 0;
+  background: #28a745;
+  color: #fff;
+  transition: all 200ms ease-in;
+}
+
+.start-link {
+  text-decoration: none;
+  color: #000000;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.start:hover {
+  background: #218838;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+textarea {
+  resize: vertical;
+  height: 100px;
+}
+
+#questions-container {
+  margin-top: 20px;
+}
+
+#add-question {
+  background: #007bff;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#add-question:hover {
+  background: #0056b3;
+}
+
+/* Кнопка збереження */
+.save-test {
+  background: #28a745;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.save-test:hover {
+  background: #218838;
+}
+
+.sorting-wrapper {
+  display: flex;
+}
+
+.sorting-text {
+  margin-right: 10px;
+}
+
+#sort-type {
+  outline: none;
+  border: none;
+  background: transparent;
+  border-bottom: 3px solid #28a745;
+}
+
+.rollback {
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-left: 1px solid #28a745;
+  color: black;
+  font-weight: bold;
+}
+
+.test-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  max-width: 100%;
+}
+
+.pieChart {
+  padding: 1rem;
+  max-width: 500px;
+  max-height: 500px;
+}

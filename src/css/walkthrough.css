@@ -1,0 +1,125 @@
+.test-description {
+  text-align: center;
+  margin: auto;
+  width: 80%;
+  word-break: break-word;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+#wrapper {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+}
+
+.question-card {
+  min-width: 100%;
+  box-sizing: border-box;
+  padding: 20px;
+  transform: translateX(0%);
+  text-align: center;
+  transition: transform 0.5s ease-in-out;
+}
+
+.q-image {
+  max-width: 16rem;
+  object-fit: contain;
+  width: 100%;
+}
+
+.answers {
+  padding-top: 0.25rem;
+}
+
+.answers input[type='text'] {
+  width: 60%;
+  border: none;
+  border-bottom: 1px solid black;
+  border-radius: unset;
+  outline: none;
+  background: transparent;
+}
+
+.answers label {
+  background-color: rgb(194, 151, 151);
+  display: flex;
+  align-items: center;
+  padding: 1rem 1rem;
+  border-radius: 0.75rem;
+  margin-top: 0.5rem;
+  transition: all 0.5s;
+  width: 60%;
+  margin-inline: auto;
+  text-align: start;
+}
+
+.answers label input {
+  width: auto;
+  transition: all 0.5s;
+  margin-right: 0.75rem;
+}
+
+#next,
+#prev {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  z-index: 10;
+  outline: none;
+  border: none;
+  background: #28a725;
+  transition: all 0.2s;
+  cursor: pointer;
+  font-size: 1.5rem;
+  padding: 1rem;
+  border-radius: 4px;
+  pointer-events: all;
+  color: #fff;
+}
+
+#next:hover,
+#prev:hover {
+  background: #0a6c08;
+}
+
+#next:disabled,
+#prev:disabled {
+  background: #60af5f;
+  pointer-events: none;
+}
+
+#prev {
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+}
+
+#next {
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+}
+
+#finish {
+  font-weight: bold;
+  border: none;
+  font-size: 1rem;
+  outline: none;
+  background: none;
+  border-left: 1px solid #28a725;
+  cursor: pointer;
+  pointer-events: all;
+  opacity: 1;
+  transition: all 0.2s;
+}
+
+#finish:disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  border-left: 1px solid #28a72550;
+}
