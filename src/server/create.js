@@ -122,6 +122,7 @@ export const createTest = async () => {
     if (ansError) throw new Error(ansError.message);
 
     Notiflix.Notify.success('Успішно додано новий тест!');
+    return true
   } catch (error) {
     Notiflix.Notify.failure(error.message);
     console.error(error);
@@ -129,5 +130,6 @@ export const createTest = async () => {
     if (testId) {
       await supabase.from('tests').delete().eq('id', testId);
     }
+    return false
   }
 };

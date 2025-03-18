@@ -182,10 +182,13 @@ function dragEnd() {
 
 document.getElementById('add-test-btn').addEventListener('click', async e => {
   e.target.setAttribute('disabled', true);
-  await createTest();
-  setTimeout(() => {
-    window.location.replace("/")
-  }, 1000);
+  if (await createTest()) {
+    setTimeout(() => {
+      window.location.replace('/');
+    }, 1000);
+  }else{
+    e.currentTarget.removeAttribute('disabled')
+  }
 });
 
 window.removeImage = removeImage;
