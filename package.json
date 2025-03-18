@@ -5,7 +5,7 @@
   "homepage": "https://maxpr22.github.io/Questionary-builder-final",
   "scripts": {
     "start": "parcel src/*.html ",
-    "build": "parcel build src/*.html --public-url /Questionary-builder-final/",
+    "build": "parcel build src/*.html --public-url ./",
     "server": "json-server --watch db.json"
   },
   "repository": {
