@@ -17,7 +17,14 @@ function removeImage(questionId) {
 
 function addAnswer(questionId) {
   const answersDiv = document.getElementById(`${questionId}-answers`);
-  const questionType = document.querySelector(`#${questionId} select`).value;
+  const questionElement = document.getElementById(questionId);
+
+  if (!questionElement) {
+    console.error(` Питання з ID ${questionId} не знайдено!`);
+    return;
+  }
+
+  const questionType = questionElement.querySelector('select').value;
 
   if (questionType === 'text') {
     if (answersDiv.children.length === 0) {
@@ -35,12 +42,13 @@ function addAnswer(questionId) {
 
   let inputType = questionType === 'single' ? 'radio' : 'checkbox';
   answerDiv.innerHTML = `
-            <label>
-                <input type="text" name="answer" class="answer-input" placeholder="Варіант">
-                <input type="${inputType}" class="correct-answer" name="correct-${questionId}"> <span>Правильна відповідь</span>
-            </label>
-            <button class = "remove-question" onclick="this.parentElement.remove()">Видалити</button>
-        `;
+      <label>
+          <input type="text" name="answer" class="answer-input" placeholder="Варіант">
+          <input type="${inputType}" class="correct-answer" name="correct-${questionId}">
+          <span>Правильна відповідь</span>
+      </label>
+      <button class="remove-question" onclick="this.parentElement.remove()">Видалити</button>
+  `;
 
   answersDiv.appendChild(answerDiv);
 }
@@ -121,16 +129,25 @@ function addQuestion() {
   questionDiv.addEventListener('dragend', dragEnd);
 }
 
-function updateQuestionNumbers() {
-  document
-    .querySelectorAll('.question .question-title')
-    .forEach((question, index) => {
-      question.innerText = `Питання ${index + 1}:`;
-      question.parentElement.parentNode.parentElement.setAttribute(
-        'id',
-        `question-${index + 1}`
-      );
-    });
+ function updateQuestionNumbers() {
+  document.querySelectorAll('.question').forEach((question, index) => {
+    const newId = `question-${index + 1}`;
+    question.setAttribute('id', newId);
+
+    question.querySelector('.question-title').innerText = `Питання ${index + 1}:`;
+
+    const select = question.querySelector('select');
+    select.setAttribute('onchange', `updateAnswerType('${newId}', this)`);
+
+    const answerDiv = question.querySelector('.answers');
+    answerDiv.setAttribute('id', `${newId}-answers`);
+
+    const addAnswerBtn = question.querySelector('.add-answer');
+    addAnswerBtn.setAttribute('onclick', `addAnswer('${newId}')`);
+
+    const deleteBtn = question.querySelector('button[onclick^="removeElement"]');
+    deleteBtn.setAttribute('onclick', `removeElement('${newId}')`);
+  });
 }
 
 let draggedItem = null;
