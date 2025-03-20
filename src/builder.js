@@ -165,6 +165,24 @@ function updateQuestionNumbers() {
   });
 }
 
+function updateQuestionIds() {
+  document.querySelectorAll('.question').forEach((question, index) => {
+    const newId = `question-${index + 1}`;
+    question.setAttribute('data-question-id', newId);
+
+    const imagePreview = question.querySelector('.image-wrapper');
+    if (imagePreview) {
+      imagePreview.id = `${newId}-image-preview`;
+    }
+
+    const deleteButton = question.querySelector('.delete-image');
+    if (deleteButton) {
+      deleteButton.setAttribute('onclick', `removeImage('${newId}')`);
+    }
+  });
+}
+
+
 let draggedItem = null;
 
 function dragStart(event) {
@@ -209,6 +227,8 @@ function dragEnd() {
   draggedItem.classList.remove('dragging');
   draggedItem = null;
   updateQuestionNumbers();
+  updateQuestionIds()
+
 }
 
 document.getElementById('add-test-btn').addEventListener('click', async e => {

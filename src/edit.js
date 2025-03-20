@@ -1,6 +1,7 @@
 import { getTestById } from '../funcs/getTestById';
 import { loadAnswersToQuestions } from '../funcs/loadAnswersToQuestions';
 import { loadQuestionsToTest } from '../funcs/loadQuestionsToTest';
+import { updateTest } from './server/update';
 window.removeImage = removeImage;
 window.addAnswer = addAnswer;
 window.updateAnswerType = updateAnswerType;
@@ -11,7 +12,6 @@ window.dragLeave = dragLeave;
 window.dragOver = dragOver;
 window.dragStart = dragStart;
 window.drop = drop;
-window.draggedItem = draggedItem;
 import {
   previewImage,
   removeImage,
@@ -22,7 +22,6 @@ import {
   dragLeave,
   dragOver,
   dragStart,
-  draggedItem,
   drop,
 } from '../funcs/manageTests';
 
@@ -266,7 +265,10 @@ import {
   document
     .getElementById('add-test-btn')
     .addEventListener('click', async () => {
-      // await updateTest(test.id);
-      console.log('обновление ушло на обновление...');
+      await updateTest(test.id);
+      setTimeout(() => {
+        window.location.replace('/');
+      }, 1000);
+      
     });
 })();

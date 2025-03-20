@@ -1,3 +1,6 @@
+let draggedItem = null;
+let originalPosition = null;
+
 export function removeImage(questionId) {
   const container = document.getElementById(questionId);
 
@@ -112,7 +115,6 @@ export function updateQuestionNumbers() {
   });
 }
 
-export let draggedItem = null;
 
 export function dragStart(event) {
   draggedItem = event.target;
@@ -147,6 +149,25 @@ export function dragLeave(event) {
   event.target.closest('.question')?.classList.remove('drag-over');
 }
 
+function updateQuestionIds() {
+  document.querySelectorAll('.question').forEach((question, index) => {
+    const newId = `question-${index + 1}`;
+    question.setAttribute('data-question-id', newId);
+
+    const imagePreview = question.querySelector('.image-wrapper');
+    if (imagePreview) {
+      imagePreview.id = `${newId}-image-preview`;
+    }
+
+    const deleteButton = question.querySelector('.delete-image');
+    if (deleteButton) {
+      deleteButton.setAttribute('onclick', `removeImage('${newId}')`);
+    }
+  });
+}
+
+
+
 export function dragEnd() {
   const container = document.getElementById('questions-container');
   if (!container.contains(draggedItem)) {
@@ -157,4 +178,6 @@ export function dragEnd() {
   draggedItem.classList.remove('dragging');
   draggedItem = null;
   updateQuestionNumbers();
+  updateQuestionIds();
 }
+
