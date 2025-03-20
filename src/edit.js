@@ -2,6 +2,7 @@ import { getTestById } from '../funcs/getTestById';
 import { loadAnswersToQuestions } from '../funcs/loadAnswersToQuestions';
 import { loadQuestionsToTest } from '../funcs/loadQuestionsToTest';
 import { updateTest } from './server/update';
+import { removeElement } from './server/update';
 window.removeImage = removeImage;
 window.addAnswer = addAnswer;
 window.updateAnswerType = updateAnswerType;
@@ -61,14 +62,7 @@ import {
   let questionCount = questions.length;
 
 
-  window.removeElement = function removeElement(id) {
-    const element = document.getElementById(id);
-    if (element) {
-      element.remove();
-      questionCount--;
-      updateQuestionNumbers();
-    }
-  }
+  window.removeElement = await removeElement
 
   window.removeImage = function removeImage(questionId) {
     const container = document.getElementById(questionId);
@@ -162,7 +156,9 @@ import {
         </div>
       </div>
   `;
+  // console.log(questions)
     questions.map((question, index) => {
+      console.log(question.type)
       const questionDiv = document.createElement('div');
       let questionId = `question-${index + 1}`;
 
@@ -220,11 +216,14 @@ import {
       questionDiv.addEventListener('dragend', dragEnd);
       answers[index].map((a, index) => {
         const answersDiv = document.getElementById(`${questionId}-answers`);
-        const questionType = document.querySelector(
-          `#${questionId} select`
-        ).value;
-
+        // const questionType = document.querySelector(
+        //   `#${questionId} select`
+        // ).value;
+        const questionType = question.type;
+        console.log(questionType)
+        console.log(question)
         if (questionType === 'text') {
+          console.log("Додаємо текстову відповідь для питання:", questionId);
           if (answersDiv.children.length === 0) {
             const input = document.createElement('input');
             input.type = 'text';
