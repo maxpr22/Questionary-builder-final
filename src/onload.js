@@ -93,7 +93,7 @@ function createCatalogMarkup(tests) {
                 <div class="menu-container">
                     <button class="menu-button">⋮</button>
                     <div class="dropdown-menu">
-                        <button class="edit"><a class = "start-link" href="/questionary-builder.html">Редагувати</a></button>
+                        <button class="edit"><a class = "start-link" href="/edit.html?test_id=${id}">Редагувати</a></button>
                         <button class="delete"onClick="deleteTest(${id})">Видалити</button>
                         <button class="continue"><a class = "start-link" href="/walkthrough.html?test_id=${id}">Продовжити</a></button>
                     </div>

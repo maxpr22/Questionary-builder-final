@@ -1,14 +1,4 @@
-import { createTest } from './server/create';
-
-document.addEventListener('DOMContentLoaded', () => {
-  document
-    .getElementById('add-question-btn')
-    .addEventListener('click', addQuestion);
-});
-
-let questionCount = 0;
-
-function removeImage(questionId) {
+export function removeImage(questionId) {
   const container = document.getElementById(questionId);
 
   const fileInput = container.querySelector('input[type="file"]');
@@ -23,7 +13,7 @@ function removeImage(questionId) {
   }
 }
 
-function addAnswer(questionId) {
+export function addAnswer(questionId) {
   const answersDiv = document.getElementById(`${questionId}-answers`);
   const questionElement = document.getElementById(questionId);
 
@@ -51,7 +41,7 @@ function addAnswer(questionId) {
   answerDiv.innerHTML = `
       <label>
           <input type="text" name="answer" class="answer-input" placeholder="Варіант">
-          <input type="${inputType}" class="correct-answer" name="correct">
+          <input type="${inputType}" class="correct-answer" name="correct-${questionId}">
           <span>Правильна відповідь</span>
       </label>
       <button class="remove-question" onclick="this.parentElement.remove()">Видалити</button>
@@ -60,12 +50,12 @@ function addAnswer(questionId) {
   answersDiv.appendChild(answerDiv);
 }
 
-function updateAnswerType(questionId, selectElement) {
+export function updateAnswerType(questionId, selectElement) {
   const answersDiv = document.getElementById(`${questionId}-answers`);
   answersDiv.innerHTML = '';
 }
 
-function removeElement(id) {
+export function removeElement(id) {
   const element = document.getElementById(id);
   if (element) {
     element.remove();
@@ -74,7 +64,7 @@ function removeElement(id) {
   }
 }
 
-function previewImage(event, questionId) {
+export function previewImage(event, questionId) {
   const file = event.target.files[0];
   if (file) {
     const reader = new FileReader();
@@ -93,50 +83,7 @@ function previewImage(event, questionId) {
   }
 }
 
-function addQuestion() {
-  questionCount++;
-  let questionId = `question-${questionCount}`;
-
-  const questionDiv = document.createElement('div');
-  questionDiv.classList.add('question');
-  questionDiv.setAttribute('id', questionId);
-  questionDiv.setAttribute('draggable', true);
-
-  questionDiv.innerHTML = `
-          <div class="question-header">
-              <span class="drag-handle">☰</span>
-              <label><span class="question-title">Питання ${questionCount}:</span> 
-                  <input type="text" id="question-title" name="question" placeholder="Введіть питання">
-              </label>
-              <label>Тип: 
-                  <select id="question-type" onchange="updateAnswerType('${questionId}', this)">
-                      <option value="text">Текст</option>
-                      <option value="single">Один варіант</option>
-                      <option value="multiple">Кілька варіантів</option>
-                  </select>
-              </label>
-              <button onclick="removeElement('${questionId}')">Видалити</button>
-          </div>
-  
-          <div class="image-upload">
-              <input type="file" accept="image/*" onchange="previewImage(event, '${questionId}')">
-              <div class="image-preview" id="${questionId}-image-preview"></div>
-          </div>
-  
-          <div class="answers" id="${questionId}-answers"></div>
-          <button class="add-answer" onclick="addAnswer('${questionId}')">Додати відповідь</button> 
-      `;
-
-  document.getElementById('questions-container').appendChild(questionDiv);
-
-  questionDiv.addEventListener('dragstart', dragStart);
-  questionDiv.addEventListener('dragover', dragOver);
-  questionDiv.addEventListener('drop', drop);
-  questionDiv.addEventListener('dragleave', dragLeave);
-  questionDiv.addEventListener('dragend', dragEnd);
-}
-
-function updateQuestionNumbers() {
+export function updateQuestionNumbers() {
   document.querySelectorAll('.question').forEach((question, index) => {
     const newId = `question-${index + 1}`;
     question.setAttribute('id', newId);
@@ -165,14 +112,15 @@ function updateQuestionNumbers() {
   });
 }
 
-let draggedItem = null;
+export let draggedItem = null;
 
-function dragStart(event) {
+export function dragStart(event) {
   draggedItem = event.target;
+  originalPosition = draggedItem.nextSibling;
   event.target.classList.add('dragging');
 }
 
-function dragOver(event) {
+export function dragOver(event) {
   event.preventDefault();
   const target = event.target.closest('.question');
   const container = document.getElementById('questions-container');
@@ -190,16 +138,16 @@ function dragOver(event) {
   }
 }
 
-function drop(event) {
+export function drop(event) {
   event.preventDefault();
   draggedItem.classList.remove('dragging');
 }
 
-function dragLeave(event) {
+export function dragLeave(event) {
   event.target.closest('.question')?.classList.remove('drag-over');
 }
 
-function dragEnd() {
+export function dragEnd() {
   const container = document.getElementById('questions-container');
   if (!container.contains(draggedItem)) {
     originalPosition
@@ -210,22 +158,3 @@ function dragEnd() {
   draggedItem = null;
   updateQuestionNumbers();
 }
-
-document.getElementById('add-test-btn').addEventListener('click', async e => {
-  e.target.setAttribute('disabled', true);
-  if (await createTest()) {
-    setTimeout(() => {
-      window.location.replace('/');
-    }, 1000);
-  } else {
-    e.currentTarget.removeAttribute('disabled');
-  }
-});
-
-window.removeImage = removeImage;
-window.addAnswer = addAnswer;
-window.updateAnswerType = updateAnswerType;
-window.removeElement = removeElement;
-window.previewImage = previewImage;
-
-addQuestion();

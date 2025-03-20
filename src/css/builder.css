@@ -53,6 +53,13 @@ textarea {
 .question-header label {
   flex-grow: 1;
   margin-right: 10px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.question-header label input[type='text'] {
+  flex: 1;
 }
 
 .question select {
@@ -132,6 +139,7 @@ button:hover {
   position: relative;
   max-width: 300px;
   object-fit: contain;
+  width: max-content;
   margin-top: 10px;
 }
 

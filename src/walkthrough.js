@@ -18,13 +18,6 @@ async function initTest() {
   if (!id) return window.location.replace('/');
 
   const test = await loadTest(id);
-
-  startTime = Date.now();
-  const attempt = await startTestAttempt(test[0].id);
-  if (attempt) {
-    attemptId = attempt.id;
-  }
-
   if (test.length === 0) {
     document.title = 'Нічого не знайдено';
     document.querySelector('.container').innerHTML = `
@@ -34,6 +27,11 @@ async function initTest() {
       </div>
     `;
     return;
+  }
+  startTime = Date.now();
+  const attempt = await startTestAttempt(test[0].id);
+  if (attempt) {
+    attemptId = attempt.id;
   }
 
   document.title = test[0].title;
